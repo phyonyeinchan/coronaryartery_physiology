@@ -111,3 +111,6 @@ async def reload_model(request: Request, x_reload_token: Optional[str] = Header(
     except Exception as e:
         logger.exception("Reload failed: %s", e)
         raise HTTPException(status_code=500, detail=f"Reload failed: {e}")
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Coronary Artery Physiology API"}
