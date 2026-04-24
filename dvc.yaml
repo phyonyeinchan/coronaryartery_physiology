@@ -1,0 +1,18 @@
+stages:
+  ingest:
+    cmd: python src/ml/ingest.py --out data/raw.csv
+    deps: []
+    outs:
+      - data/raw.csv
+  preprocess:
+    cmd: python src/ml/preprocess.py --in data/raw.csv --out data/processed.csv
+    deps:
+      - data/raw.csv
+    outs:
+      - data/processed.csv
+  train:
+    cmd: python src/ml/train.py --data data/processed.csv --model models/model.pkl
+    deps:
+      - data/processed.csv
+    outs:
+      - models/model.pkl

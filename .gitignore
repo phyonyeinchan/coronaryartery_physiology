@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+env/
+venv/
+python-env/
+
+# Data / DVC
+data/
+.dvc/
+.dvcignore
+
+# Node / frontend
+node_modules/
+dist/
+build/
+
+# OS
+.DS_Store
