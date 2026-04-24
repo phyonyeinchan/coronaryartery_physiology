@@ -22,6 +22,18 @@ Quick start
    pytest -q
    ```
 
+Frontend (Dashboard)
+
+To run the dashboard locally:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The dashboard expects the backend to be reachable at the same host (use a proxy or run backend on port 8000 and configure CORS if needed).
+
 Data notes
 - INSPIRE: open, recommended for initial PoC (CSV). See PhysioNet for download instructions.
 - MIMIC-IV: credentialed (CITI + DUA). Apply via PhysioNet if you need larger sample.

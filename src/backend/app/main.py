@@ -7,6 +7,18 @@ import os
 import pandas as pd
 
 app = FastAPI(title="Cardio Risk Dashboard API")
+from fastapi.middleware.cors import CORSMiddleware
+
+# ... (app = FastAPI() အောက်နားမှာ ထည့်ရန်)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # အားလုံးကို ခွင့်ပြုလိုက်တာပါ
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Try to load a trained model if available
 MODEL = None
@@ -59,6 +71,14 @@ async def predict(req: InferRequest, user=Depends(get_current_user)):
     df = pd.DataFrame([req.features])
     # Basic preprocessing: ensure numeric types
     df = df.select_dtypes(include=["number"]).fillna(0)
+    # If model recorded training feature names, reindex to that order and fill missing with 0
+    try:
+        feature_names = getattr(MODEL, "feature_names_in_", None)
+        if feature_names is not None:
+            # ensure DataFrame has all expected columns in the same order
+            df = df.reindex(columns=list(feature_names), fill_value=0)
+    except Exception:
+        pass
     # If model has predict_proba, use positive class probability
     try:
         proba = MODEL.predict_proba(df)
