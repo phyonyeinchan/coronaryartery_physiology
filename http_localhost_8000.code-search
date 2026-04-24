@@ -1,0 +1,11 @@
+# Query: http://localhost:8000
+# ContextLines: 1
+
+3 results - 1 file
+
+frontend/vite.config.js:
+   7      proxy: {
+   8:       '/health': 'https://coronaryartery-physiology-ofy2jdqgl-phyonyeinchans-projects.vercel.app/predict',
+   9:       '/predict': 'https://coronaryartery-physiology-ofy2jdqgl-phyonyeinchans-projects.vercel.app/predict',
+  10:       '/reload-model': 'https://coronaryartery-physiology-ofy2jdqgl-phyonyeinchans-projects.vercel.app/predict'
+  11      }
