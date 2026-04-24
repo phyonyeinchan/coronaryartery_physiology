@@ -114,3 +114,6 @@ async def reload_model(request: Request, x_reload_token: Optional[str] = Header(
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Coronary Artery Physiology API"}
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Coronary Artery Physiology API"}
